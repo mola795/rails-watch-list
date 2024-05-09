@@ -1,0 +1,14 @@
+<h1><%= @movie.title %></h1>
+<img src="<%= @movie.poster_url %>" alt="<%= @movie.title %> poster">
+<p><%= @movie.overview %></p>
+<ul>
+  <li><strong>Rating:</strong> <%= @movie.rating %> / 10</li>
+</ul>
+
+<%= link_to "Back to Lists", lists_path, class: "btn btn-secondary" %>
+
+<% if params[:from_list] %>
+  <%= link_to "Back to List", list_path(params[:from_list]), class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "Back to Movies", movies_path, class: "btn btn-secondary" %>

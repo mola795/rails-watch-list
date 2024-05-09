@@ -1,0 +1,25 @@
+<h1>Add Movie to <%= @list.name %></h1>
+
+<%= form_with model: [@list, @bookmark] do |form| %>
+  <% if @bookmark.errors.any? %>
+    <div>
+      <h2><%= pluralize(@list.errors.count, "error") %> prevented this list from being saved:</h2>
+      <ul>
+        <% @bookmark.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label :movie_id, "Choose a Movie" %>
+  <%= form.collection_select :movie_id, @movies, :id, :title, prompt: "Select a Movie" %>
+
+  <%= form.label :comment %>
+  <small>(Comment must be at least 6 characters long)</small>
+  <%= form.text_area :comment %>
+
+  <%= form.submit "Add Movie" %>
+<% end %>
+
+<%= link_to 'Back to List', list_path(@list) %>
