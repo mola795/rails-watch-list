@@ -11,7 +11,7 @@ class BookmarksController < ApplicationController
     @bookmark.list = @list
 
     if @bookmark.save
-      redirect_to list_path(@list), notice: 'Movie was created.'
+      redirect_to list_path(@list), notice: 'Movie was added.'
     else
       @movies = Movie.all
       render :new, status: :unprocessable_entity
