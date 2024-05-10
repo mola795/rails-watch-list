@@ -1,13 +1,15 @@
-<h1>All Lists</h1>
+<h1 class="lists-header">All Lists</h1>
 
-<ul>
+<div class="lists-container">
   <% @lists.each do |list| %>
-    <li>
-      <div class="item card-category", url(<%= list.photo.attached? ? cl_image_path(list.photo.key, height: 300, crop: :fill) : image_path('') %>)">
-        <%= link_to list.name, list_path(list) %>
+    <div class="list-card">
+      <div class="list-card-image" style="background-image: url(<%= list.photo.attached? ? cl_image_path(list.photo.key, height: 300, crop: :fill) : image_path('https://via.placeholder.com/300x200') %>)">
+        <%= link_to list_path(list), class: 'list-link' do %>
+          <span class="list-card-title"><%= list.name %></span>
+        <% end %>
       </div>
-    </li>
+    </div>
   <% end %>
-</ul>
+</div>
 
-<%= link_to "New List", new_list_path, class: "btn btn-primary" %>
+<%= link_to "New List", new_list_path, class: "btn btn-primary new-list-button" %>

@@ -1,22 +1,25 @@
-<h1><%= @list.name %></h1>
+<div class="list-details">
+  <h1 class="list-title"><%= @list.name %></h1>
 
-<% if @list.photo.attached? %>
-  <%= cl_image_tag @list.photo.key, height: 300, crop: :fill %>
-<% else %>
-  <%= image_tag "", class: 'medium' %>
-<% end %>
-
-<h2>Movies</h2>
-<ul>
-  <% @list.bookmarks.each do |bookmark| %>
-    <li>
-      <strong>
-        <%= link_to bookmark.movie.title, movie_path(bookmark.movie, from_list: @list.id) %>
-      </strong>: <%= bookmark.comment %>
-      <%= link_to 'Remove', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-    </li>
+  <% if @list.photo.attached? %>
+    <%= cl_image_tag @list.photo.key, height: 400, crop: :fill, class: 'list-photo' %>
+  <% else %>
+    <%= image_tag "https://via.placeholder.com/400x200", class: 'list-photo' %>
   <% end %>
-</ul>
 
-<%= link_to "Add Movie", new_list_bookmark_path(@list), class: "btn btn-primary" %>
-<%= link_to "Back to Lists", lists_path, class: "btn btn-secondary" %>
+  <h2 class="movies-heading">Movies</h2>
+  <ul class="movies-list">
+    <% @list.bookmarks.each do |bookmark| %>
+      <li class="movie-item">
+        <strong>
+          <%= link_to bookmark.movie.title, movie_path(bookmark.movie, from_list: @list.id), class: 'movie-link' %>
+        </strong>: <%= bookmark.comment %>
+        <%= link_to 'Remove', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger remove-button' %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Add Movie", new_list_bookmark_path(@list), class: "btn btn-primary add-movie-button" %>
+  <%= link_to "Back to Lists", lists_path, class: "btn btn-secondary back-button" %>
+  <%= link_to "Delete List", list_path(@list), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this list?' }, class: "btn btn-danger delete-list-button" %>
+</div>

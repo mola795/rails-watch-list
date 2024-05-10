@@ -1,11 +1,15 @@
-<h1>All Movies</h1>
+<div class="container my-5">
+  <h1 class="text-center mb-4">All Movies</h1>
 
-<ul>
-  <% @movies.each do |movie| %>
-    <li>
-      <%= link_to movie.title, movie_path(movie) %>
-    </li>
-  <% end %>
-</ul>
+  <ul class="list-group mb-4">
+    <% @movies.each do |movie| %>
+      <li class="list-group-item">
+        <%= link_to movie.title, movie_path(movie), class: 'text-decoration-none' %>
+      </li>
+    <% end %>
+  </ul>
 
-<%= link_to "Back to Lists", lists_path, class: "btn btn-secondary" %>
+  <div class="text-center">
+    <%= link_to "Back to Lists", lists_path, class: "btn btn-secondary" %>
+  </div>
+</div>
