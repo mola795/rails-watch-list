@@ -3,7 +3,9 @@
 <ul>
   <% @lists.each do |list| %>
     <li>
-      <%= link_to list.name, list_path(list) %>
+      <div class="item card-category", url(<%= list.photo.attached? ? cl_image_path(list.photo.key, height: 300, crop: :fill) : image_path('') %>)">
+        <%= link_to list.name, list_path(list) %>
+      </div>
     </li>
   <% end %>
 </ul>

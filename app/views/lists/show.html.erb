@@ -1,5 +1,11 @@
 <h1><%= @list.name %></h1>
 
+<% if @list.photo.attached? %>
+  <%= cl_image_tag @list.photo.key, height: 300, crop: :fill %>
+<% else %>
+  <%= image_tag "", class: 'medium' %>
+<% end %>
+
 <h2>Movies</h2>
 <ul>
   <% @list.bookmarks.each do |bookmark| %>
